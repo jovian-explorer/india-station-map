@@ -1,6 +1,6 @@
 # India Station Map
 
-Plot Indian state boundaries with Python, with options to plot features as per user requirement. The current version allows user to mark different places on the map, using their lat-long values, for example, ground stations of a network.
+Plot Indian state boundaries with Python, with options to plot features as per user requirement. The current version allows user to mark different places on the map, using their lat-long values, for example, ground stations of a network, or locations of interest in general.
 
 ![Example map with TRV, BLR and BHP stations](docs/india_station_map.png)
 
