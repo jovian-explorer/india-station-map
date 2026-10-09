@@ -133,8 +133,24 @@ def plot_map(stations, india_file: Path, world_file: Path | None = None, *,
         if not neighbors.empty:
             neighbors.plot(ax=ax, facecolor="#E7E3DC", edgecolor="#A5A49F", linewidth=0.55, zorder=1)
     india.plot(ax=ax, facecolor="#FCFCFA", edgecolor="#A8B5BE", linewidth=0.4, zorder=2)
-    gpd.GeoSeries([india.geometry.union_all()], crs=india.crs).boundary.plot(
-        ax=ax, color="#334B5B", linewidth=0.9, zorder=3)
+    # Draw the national outline by dissolving states, but EXCLUDE internal
+    # geometry artefacts (e.g. LoC/LAC segments inside J&K) that union_all
+    # would incorrectly render as international boundary lines.
+    # We dissolve into a single geometry and take only its *exterior* rings.
+    from shapely.geometry import Polygon, MultiPolygon
+    merged = india.geometry.union_all()
+    # Extract only the exterior shell of each polygon, discarding interior
+    # rings that could represent internal boundary artefacts.
+    exteriors = []
+    if merged.geom_type == "Polygon":
+        exteriors.append(Polygon(merged.exterior))
+    elif merged.geom_type == "MultiPolygon":
+        for poly in merged.geoms:
+            exteriors.append(Polygon(poly.exterior))
+    if exteriors:
+        outline = MultiPolygon(exteriors) if len(exteriors) > 1 else exteriors[0]
+        gpd.GeoSeries([outline], crs=india.crs).boundary.plot(
+            ax=ax, color="#334B5B", linewidth=0.9, zorder=3)
     if reference_curves:
         draw_reference_curves(ax)
     # A marker drawn in points keeps the antenna size stable when the map is zoomed.
