@@ -17,7 +17,9 @@ jobs:
       - name: Install plotting requirements
         run: python -m pip install numpy matplotlib geopandas shapely pyogrio
       - name: Render notebook with unchanged boundary plotting
-        run: python render_scg_figure2.py
+        run: |
+          python -c "from pathlib import Path; p=Path('render_scg_figure2.py'); s=p.read_text(); p.write_text(s.replace(chr(92)+'nplt.savefig',chr(10)+'plt.savefig'))"
+          python render_scg_figure2.py
       - uses: actions/upload-artifact@v4
         with:
           name: SCG-Figure-2-GitHub-notebook
