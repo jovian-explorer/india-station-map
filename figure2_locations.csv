@@ -1,0 +1,21 @@
+label,longitude,latitude,symbol,tier
+CCL Duggirala,80.59,16.32,factory,
+CCL Kuvvakolli,79.97,13.62,factory,
+Tata Theni,77.49,10.01,factory,
+Tata Toopran,78.49,17.84,factory,
+Mumbai,72.88,19.08,bean,major
+Bengaluru,77.59,12.97,bean,major
+Delhi NCR,77.21,28.61,bean,major
+Hyderabad,78.49,17.38,bean,major
+Pune,73.86,18.52,bean,established
+Chennai,80.27,13.08,bean,established
+Kolkata,88.36,22.57,bean,established
+Kochi,76.27,9.93,bean,developing
+Ahmedabad,72.57,23.02,bean,developing
+Jaipur,75.79,26.91,bean,developing
+Chandigarh,76.78,30.73,bean,developing
+Peenya Bengaluru,77.52,13.04,antenna,
+Vijayawada Guntur,80.44,16.29,antenna,
+Coimbatore,76.96,11.02,antenna,
+Hyderabad West,78.28,17.52,antenna,
+Theni Madurai,77.70,10.09,antenna,
